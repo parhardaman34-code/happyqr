@@ -33,11 +33,9 @@ function handler(req, res) {
 
   // API: Server-side Order and Add-on Validation
   if (urlPath === '/api/validate-order' && req.method === 'POST') {
-    let body = '';
-    req.on('data', chunk => { body += chunk; });
-    req.on('end', () => {
+    const handlePayload = (raw) => {
       try {
-        const payload = JSON.parse(body || '{}');
+        const payload = typeof raw === 'object' ? raw : JSON.parse(raw || '{}');
         const items = payload.items || [];
         const menuPath = path.join(PUBLIC_DIR, 'menu.json');
         const menuData = JSON.parse(fs.readFileSync(menuPath, 'utf8'));
@@ -104,7 +102,15 @@ function handler(req, res) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ valid: false, error: 'Invalid order payload' }));
       }
-    });
+    };
+
+    if (req.body) {
+      handlePayload(req.body);
+    } else {
+      let body = '';
+      req.on('data', chunk => { body += chunk; });
+      req.on('end', () => { handlePayload(body); });
+    }
     return;
   }
 
