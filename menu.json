@@ -1,18 +1,16 @@
 {
   "_categories": [
-    { "id": "burger", "name": "Burger", "emoji": "🍔" },
-    { "id": "sandwich", "name": "Sandwich", "emoji": "🥪" },
-    { "id": "wraps", "name": "Wraps", "emoji": "🌯" },
-    { "id": "marine", "name": "Marine", "emoji": "⭐" },
-    { "id": "pasta", "name": "Pasta", "emoji": "🍝" },
-    { "id": "chaap", "name": "Chaap", "emoji": "🔥" },
-    { "id": "chinese", "name": "Chinese", "emoji": "🥢" },
-    { "id": "salad", "name": "Salad", "emoji": "🥗" },
-    { "id": "fries", "name": "Fries", "emoji": "🍟" },
     { "id": "pizza", "name": "Pizza", "emoji": "🍕" },
-    { "id": "shake", "name": "Shakes", "emoji": "🥤" },
-    { "id": "mocktail", "name": "Mocktails", "emoji": "🍹" },
-    { "id": "slush", "name": "Frost Slush", "emoji": "🍧" }
+    { "id": "burgers", "name": "Burgers", "emoji": "🍔" },
+    { "id": "pasta", "name": "Pasta", "emoji": "🍝" },
+    { "id": "sandwiches", "name": "Sandwiches", "emoji": "🥪" },
+    { "id": "garlic_bread", "name": "Garlic Bread", "emoji": "🥖" },
+    { "id": "mojito", "name": "Mojito", "emoji": "🍹" },
+    { "id": "fries", "name": "Fries", "emoji": "🍟" },
+    { "id": "maggi", "name": "Maggi", "emoji": "🍜" },
+    { "id": "shakes", "name": "Shakes", "emoji": "🥤" },
+    { "id": "wraps", "name": "Wraps", "emoji": "🌯" },
+    { "id": "momo", "name": "Momo", "emoji": "🥟" }
   ],
   "_addons": [
     {
@@ -22,17 +20,7 @@
       "maxQty": 3,
       "appliesTo": "all_food",
       "targetCategory": "",
-      "excludeCategories": ["shake", "mocktail", "slush", "pizza"],
-      "enabled": true
-    },
-    {
-      "id": "extra_tikki",
-      "name": "Extra Tikki",
-      "price": 20,
-      "maxQty": 2,
-      "appliesTo": "category",
-      "targetCategory": "burger",
-      "excludeCategories": [],
+      "excludeCategories": ["shakes", "mojito", "pizza"],
       "enabled": true
     },
     {
@@ -56,146 +44,74 @@
       "enabled": true
     }
   ],
-  "burger": [
-    { "name": "Veg. Burger", "price": 50 },
-    { "name": "Creamy Burger", "price": 60 },
-    { "name": "Super Veggie Burger", "price": 70 },
-    { "name": "Makhani Burger", "price": 70 },
-    { "name": "Cheesy Spicy Burger", "price": 70 },
-    { "name": "Soya Grill Burger", "price": 70 },
-    { "name": "Achari Burger", "price": 70 },
-    { "name": "Cheese Corn Burger", "price": 70 },
-    { "name": "Paneer Tikka Burger", "price": 100 },
-    { "name": "Paneer Makhani Burger", "price": 100 },
-    { "name": "Achari Paneer Burger", "price": 100 },
-    { "name": "Peppy Paneer Burger", "price": 100 },
-    { "name": "Crispy Paneer Burger", "price": 100 },
-    { "name": "Grill Island Special Burger", "price": 100 }
+  "pizza": [
+    { "name": "Margherita Pizza", "variants": [{ "label": "S", "price": 80 }, { "label": "M", "price": 140 }, { "label": "L", "price": 240 }] },
+    { "name": "Sweet Corn Pizza", "variants": [{ "label": "S", "price": 90 }, { "label": "M", "price": 150 }, { "label": "L", "price": 250 }] },
+    { "name": "Paneer Delight Pizza", "variants": [{ "label": "S", "price": 150 }, { "label": "M", "price": 240 }, { "label": "L", "price": 330 }] },
+    { "name": "Mushroom Tikka Pizza", "variants": [{ "label": "S", "price": 140 }, { "label": "M", "price": 260 }, { "label": "L", "price": 340 }] },
+    { "name": "Tandoori Paneer Pizza", "variants": [{ "label": "S", "price": 130 }, { "label": "M", "price": 270 }, { "label": "L", "price": 360 }] },
+    { "name": "Veggie Crunch Pizza", "variants": [{ "label": "S", "price": 150 }, { "label": "M", "price": 260 }, { "label": "L", "price": 350 }] },
+    { "name": "Onion Pizza", "variants": [{ "label": "S", "price": 90 }, { "label": "M", "price": 150 }, { "label": "L", "price": 230 }] },
+    { "name": "Kappy Special Pizza", "variants": [{ "label": "S", "price": 160 }, { "label": "M", "price": 280 }, { "label": "L", "price": 390 }] }
   ],
-  "sandwich": [
-    { "name": "Corn Masala Sandwich", "price": 80 },
-    { "name": "Veg. Grill Sandwich", "price": 100 },
-    { "name": "Soya Grill Sandwich", "price": 120 },
-    { "name": "Cheese Corn Sandwich", "price": 120 },
-    { "name": "Veg Cheese Sandwich", "price": 120 },
-    { "name": "Cheesy Spicy Sandwich", "price": 120 },
-    { "name": "Cheesy Pasta Sandwich", "price": 120 },
-    { "name": "Grill Island Special Sandwich", "price": 140 },
-    { "name": "Peri Peri Cottage Cheese Sandwich", "price": 140 },
-    { "name": "Paneer Tikka Sandwich", "price": 140 },
-    { "name": "Paneer Makhani Sandwich", "price": 140 },
-    { "name": "Achari Paneer Sandwich", "price": 140 },
-    { "name": "Double Decker Sandwich", "price": 180 }
-  ],
-  "wraps": [
-    { "name": "Veg. Wrap", "price": 90 },
-    { "name": "Cheese Corn Wrap", "price": 110 },
-    { "name": "Cheesy Spicy Wrap", "price": 110 },
-    { "name": "Achari Wrap", "price": 110 },
-    { "name": "Makhani Wrap", "price": 110 },
-    { "name": "Soya Grill Wrap", "price": 110 },
-    { "name": "Grill Island Special Wrap", "price": 120 },
-    { "name": "Paneer Tikka Wrap", "price": 130 },
-    { "name": "Cheese Chilly Wrap", "price": 130 },
-    { "name": "Paneer Makhani Wrap", "price": 130 },
-    { "name": "Achari Paneer Wrap", "price": 130 },
-    { "name": "Crispy Paneer Wrap", "price": 130 }
-  ],
-  "marine": [
-    { "name": "Veg. Grill Marine", "price": 80 },
-    { "name": "Cheese Corn Marine", "price": 90 },
-    { "name": "Cheesy Spicy Marine", "price": 90 },
-    { "name": "Makhani Marine", "price": 90 },
-    { "name": "Achari Marine", "price": 90 },
-    { "name": "Soya Grill Marine", "price": 100 },
-    { "name": "Grill Island Special Marine", "price": 100 },
-    { "name": "Paneer Tikka Marine", "price": 110 },
-    { "name": "Paneer Makhani Marine", "price": 110 },
-    { "name": "Achari Paneer Marine", "price": 110 },
-    { "name": "Crispy Paneer Marine", "price": 120 }
+  "burgers": [
+    { "name": "Crispy Veg Burger", "variants": [{ "label": "Without Cheese", "price": 40 }, { "label": "With Cheese", "price": 50 }] },
+    { "name": "Mushroom Burger", "variants": [{ "label": "Without Cheese", "price": 60 }, { "label": "With Cheese", "price": 70 }] },
+    { "name": "Popular Burger", "variants": [{ "label": "Without Cheese", "price": 60 }, { "label": "With Cheese", "price": 70 }] },
+    { "name": "Paneer Burger", "variants": [{ "label": "Without Cheese", "price": 70 }, { "label": "With Cheese", "price": 80 }] }
   ],
   "pasta": [
-    { "name": "Red Sauce Pasta", "variants": [{ "label": "Half", "price": 120 }, { "label": "Full", "price": 180 }] },
-    { "name": "White Sauce Pasta", "variants": [{ "label": "Half", "price": 120 }, { "label": "Full", "price": 180 }] },
-    { "name": "Makhani Pasta", "variants": [{ "label": "Half", "price": 140 }, { "label": "Full", "price": 200 }] },
-    { "name": "Achari Pasta", "variants": [{ "label": "Half", "price": 140 }, { "label": "Full", "price": 200 }] },
-    { "name": "Mix Sauce Pasta", "variants": [{ "label": "Half", "price": 140 }, { "label": "Full", "price": 200 }] },
-    { "name": "Baked Cheese Pasta", "variants": [{ "label": "Half", "price": 160 }, { "label": "Full", "price": 220 }] }
+    { "name": "Alfredo Sauce Pasta (White)", "price": 140 },
+    { "name": "Marinara Pasta (Red Sauce)", "price": 130 },
+    { "name": "Pasta Lavista (Mix Sauce)", "price": 150 }
   ],
-  "chaap": [
-    { "name": "Masala Chaap", "variants": [{ "label": "Half", "price": 120 }, { "label": "Full", "price": 220 }] },
-    { "name": "Malai Chaap", "variants": [{ "label": "Half", "price": 120 }, { "label": "Full", "price": 220 }] },
-    { "name": "Afgani Chaap", "variants": [{ "label": "Half", "price": 120 }, { "label": "Full", "price": 220 }] },
-    { "name": "Peri Peri Chaap", "variants": [{ "label": "Half", "price": 120 }, { "label": "Full", "price": 220 }] },
-    { "name": "Makhani Chaap", "variants": [{ "label": "Half", "price": 120 }, { "label": "Full", "price": 220 }] },
-    { "name": "Achari Chaap", "variants": [{ "label": "Half", "price": 120 }, { "label": "Full", "price": 220 }] },
-    { "name": "Paneer Tikka", "variants": [{ "label": "Half", "price": 140 }, { "label": "Full", "price": 220 }] }
+  "sandwiches": [
+    { "name": "Veggie Mix Sandwich", "price": 50 },
+    { "name": "Paneer Makhani Sandwich", "price": 70 },
+    { "name": "Mushroom Sandwich", "price": 60 },
+    { "name": "Aloo Patty Sandwich", "price": 50 },
+    { "name": "Kappy Special Sandwich", "price": 70 }
   ],
-  "chinese": [
-    { "name": "Manchurian", "variants": [{ "label": "Half", "price": 100 }, { "label": "Full", "price": 180 }] },
-    { "name": "Veg Noodles", "variants": [{ "label": "Half", "price": 100 }, { "label": "Full", "price": 180 }] },
-    { "name": "Chilli Garlic Noodles", "variants": [{ "label": "Half", "price": 110 }, { "label": "Full", "price": 200 }] },
-    { "name": "Garlic Noodles", "variants": [{ "label": "Half", "price": 110 }, { "label": "Full", "price": 200 }] },
-    { "name": "Cheese Noodles", "variants": [{ "label": "Half", "price": 130 }, { "label": "Full", "price": 220 }] },
-    { "name": "Cheese Chilli", "variants": [{ "label": "Half", "price": 140 }, { "label": "Full", "price": 250 }] },
-    { "name": "Crispy Corn", "price": 130 },
-    { "name": "Crispy Paneer Corn", "price": 160 },
-    { "name": "Honey Chilli Potato", "price": 120 }
+  "garlic_bread": [
+    { "name": "Cheese Garlic Bread", "price": 100 },
+    { "name": "Stuffed Garlic Bread", "price": 150 }
   ],
-  "salad": [
-    { "name": "Veg Salad", "price": 120 },
-    { "name": "Paneer Salad", "price": 150 }
+  "mojito": [
+    { "name": "Watermelon Mojito", "price": 80 },
+    { "name": "Virgin Mojito", "price": 80 },
+    { "name": "Fruit Beer", "price": 60 },
+    { "name": "Blue Curacao", "price": 70 },
+    { "name": "Fresh Lime Soda", "price": 50 }
   ],
   "fries": [
-    { "name": "French Fries", "variants": [{ "label": "S", "price": 50 }, { "label": "M", "price": 70 }, { "label": "L", "price": 90 }] },
-    { "name": "Peri Peri Fries", "variants": [{ "label": "S", "price": 60 }, { "label": "M", "price": 80 }, { "label": "L", "price": 100 }] },
-    { "name": "Seasoning Fries", "variants": [{ "label": "S", "price": 60 }, { "label": "M", "price": 80 }, { "label": "L", "price": 100 }] },
-    { "name": "Black Pepper Fries", "variants": [{ "label": "S", "price": 60 }, { "label": "M", "price": 80 }, { "label": "L", "price": 100 }] },
-    { "name": "Soya Fries", "price": 120 },
-    { "name": "Cheesy Fries", "price": 130 },
-    { "name": "Crispy Paneer Fries", "price": 200 },
-    { "name": "Cheese Finger (8 Pc)", "price": 170 }
+    { "name": "Classic French Fries", "price": 60 },
+    { "name": "Cajun Spice Fries", "price": 50 },
+    { "name": "Peri-Peri Fries", "price": 100 },
+    { "name": "Cheese Fries", "price": 150 }
   ],
-  "pizza": [
-    { "name": "Margarita Pizza", "variants": [{ "label": "Reg", "price": 160 }, { "label": "Large", "price": 270 }] },
-    { "name": "Onion Pizza", "variants": [{ "label": "Reg", "price": 130 }, { "label": "Large", "price": 240 }] },
-    { "name": "Tomato Pizza", "variants": [{ "label": "Reg", "price": 130 }, { "label": "Large", "price": 240 }] },
-    { "name": "Capsicum Pizza", "variants": [{ "label": "Reg", "price": 130 }, { "label": "Large", "price": 240 }] },
-    { "name": "Veg. Pizza", "variants": [{ "label": "Reg", "price": 160 }, { "label": "Large", "price": 270 }] },
-    { "name": "Farm House Pizza", "variants": [{ "label": "Reg", "price": 180 }, { "label": "Large", "price": 320 }] },
-    { "name": "Cheese Corn Pizza", "variants": [{ "label": "Reg", "price": 170 }, { "label": "Large", "price": 300 }] },
-    { "name": "Seven Farm House Pizza", "variants": [{ "label": "Reg", "price": 200 }, { "label": "Large", "price": 350 }] },
-    { "name": "Tandoori Chaap Pizza", "variants": [{ "label": "Reg", "price": 180 }, { "label": "Large", "price": 320 }] },
-    { "name": "Paneer Makhani Pizza", "variants": [{ "label": "Reg", "price": 200 }, { "label": "Large", "price": 350 }] },
-    { "name": "Paneer Tikka Pizza", "variants": [{ "label": "Reg", "price": 200 }, { "label": "Large", "price": 350 }] }
+  "maggi": [
+    { "name": "Simple Maggi", "price": 40 },
+    { "name": "Veg Maggi", "price": 50 },
+    { "name": "Sweet Corn Maggi", "price": 50 },
+    { "name": "Tasty Special Maggi", "price": 60 }
   ],
-  "shake": [
-    { "name": "Strawberry Shake", "price": 100 },
-    { "name": "Mango Shake", "price": 100 },
-    { "name": "Vanilla Shake", "price": 100 },
-    { "name": "Butter Scotch Shake", "price": 100 },
-    { "name": "Chocolate Shake", "price": 100 },
-    { "name": "Cold Coffee", "price": 100 },
-    { "name": "Vanilla Cold Coffee", "price": 110 },
-    { "name": "Oreo Shake", "price": 120 },
-    { "name": "Kit Kat Shake", "price": 120 },
-    { "name": "Black Currant Shake", "price": 120 }
+  "shakes": [
+    { "name": "Chocolate Shake", "price": 60 },
+    { "name": "Cafe Frappe Shake", "price": 60 },
+    { "name": "Strawberry Shake", "price": 70 },
+    { "name": "Butter Scotch Shake", "price": 70 },
+    { "name": "Chocolate Oreo Shake", "price": 90 },
+    { "name": "Kit-Kat Shake", "price": 90 }
   ],
-  "mocktail": [
-    { "name": "Mint Mojito", "price": 80 },
-    { "name": "Blue Curacao", "price": 80 },
-    { "name": "Watermelon", "price": 80 },
-    { "name": "Green Apple", "price": 80 },
-    { "name": "Ice Tea", "price": 80 },
-    { "name": "Kala Khatta", "price": 80 },
-    { "name": "Peach", "price": 80 },
-    { "name": "Blueberry", "price": 80 }
+  "wraps": [
+    { "name": "Paneer Tikka Wrap", "price": 90 },
+    { "name": "Veggie Wrap", "price": 70 },
+    { "name": "Mexican Wrap", "price": 100 },
+    { "name": "Cheese Paneer Wrap", "price": 110 },
+    { "name": "Peri Peri Wrap", "price": 100 }
   ],
-  "slush": [
-    { "name": "Mango", "price": 90 },
-    { "name": "Orange", "price": 90 },
-    { "name": "Strawberry", "price": 90 },
-    { "name": "Mango Strawberry", "price": 100 },
-    { "name": "Orange Blue Curacao", "price": 100 }
+  "momo": [
+    { "name": "Momos", "price": 120 },
+    { "name": "Spring Rolls", "price": 80 }
   ]
 }

@@ -1,13 +1,13 @@
-# Grill Island - Mobile QR Dining Menu
+# Kappy Cafe - Mobile QR Dining Menu
 
-Artisanal live grill, tandoor & pure vegetarian dining web application for **Grill Island, Phagwara**.
+Good Food • Good Vibes • Always • **Kappy Cafe**
 
 ## Features
 - 📱 **Mobile-First App Experience**: Built for phone screens scanning table QR codes.
-- 🥘 **100% Real Menu**: All 13 categories (Burgers, Sandwiches, Wraps, Marines, Pasta, Chaap, Chinese without Ajinomoto, Salads, Fries, Pizzas, Shakes, Mocktails, Slush).
-- ⚡ **Interactive Tray & Customization**: Portion selectors (Half/Full, S/M/L, Reg/Large), instant search, and real-time tray computation (no added GST).
-- 📲 **WhatsApp Table Ordering**: One-tap order routing directly to WhatsApp (+91 98553 81984) with table number and formatted items.
-- 📸 **Instagram Integration**: Follow prompt and high-res QR code for `@GRILLISLAND18`.
+- ☕ **Complete Cafe Menu**: 11 categories (Pizza, Burgers, Pasta, Sandwiches, Garlic Bread, Mojito, Fries, Maggi, Shakes, Wraps, Momo).
+- ⚡ **Interactive Tray & Customization**: Portion and crust selectors (S/M/L, With/Without Cheese), instant search, and real-time tray computation.
+- 📲 **WhatsApp Table Ordering**: One-tap order routing directly to WhatsApp (+91 97816 25429 / +91 89689 15301) with table number and formatted items.
+- 📸 **Instagram Integration**: Follow prompt and high-res QR code for `@urs_kappycafe`.
 
 ## Local Development
 ```bash
@@ -15,9 +15,3 @@ Artisanal live grill, tandoor & pure vegetarian dining web application for **Gri
 node server.js
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Deploy with GitHub Pages
-1. Go to repository **Settings** > **Pages**.
-2. Under **Build and deployment**, select **Deploy from a branch**.
-3. Choose branch **main** and folder **/ (root)**, then click **Save**.
-4. Your free live menu URL will be generated within 1 minute!

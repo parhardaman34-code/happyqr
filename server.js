@@ -166,7 +166,7 @@ if (require.main === module) {
   const server = http.createServer(handler);
   server.listen(PORT, '0.0.0.0', () => {
     console.log(`\n========================================`);
-    console.log(`  Grill Island Server is Running!`);
+    console.log(`  Kappy Cafe Server is Running!`);
     console.log(`  Local URL: http://localhost:${PORT}`);
     console.log(`========================================\n`);
   });

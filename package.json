@@ -1,7 +1,7 @@
 {
-  "name": "grillqr",
+  "name": "happyqr",
   "version": "1.0.0",
-  "description": "Grill Island Artisanal Live Grill & Tandoor",
+  "description": "Kappy Cafe - Good Food, Good Vibes, Always",
   "main": "server.js",
   "scripts": {
     "build": "echo 'Static build ready'",
