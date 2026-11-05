@@ -41,10 +41,6 @@
     }
   </style>
   
-  <!-- Firebase v10 Compat SDK for Live Firestore Menu & Orders -->
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-
   <script src="https://cdn.tailwindcss.com"></script>
   <script id="tailwind-config">
     tailwind.config = {
@@ -82,7 +78,7 @@
     <!-- TOP COMPACT APP BAR (FIXED) -->
     <header class="sticky top-0 z-40 bg-surface-lowest/95 backdrop-blur-md border-b border-surface-high/60 px-4 py-2.5 flex items-center justify-between">
       <div class="flex items-center gap-2.5">
-        <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-brand-gold/60 shrink-0 bg-surface-low">
+        <div onclick="handleLogoTaps()" class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-brand-gold/60 shrink-0 bg-surface-low cursor-pointer active:scale-95 transition-transform" title="Kappy Cafe">
           <img src="./logo.jpg" alt="Kappy Cafe Logo" class="w-full h-full object-cover">
         </div>
         <div class="flex flex-col">
@@ -2069,7 +2065,7 @@
       message += `Special Instructions: ${instructions}\n\n`;
       message += `Please confirm my order. Thank you!`;
 
-      // Save Order Payload to Firebase Cloud Firestore and LocalStorage
+      // Save Order Payload to Backend API (Runs securely in backend - completely hidden from customer)
       const newOrderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
       const orderPayload = {
         id: newOrderId,
@@ -2084,33 +2080,24 @@
         totalAmount: finalTotal,
         specialInstructions: instructions,
         status: 'New',
-        createdAt: (typeof firebase !== 'undefined' && firebase.firestore && firebase.firestore.FieldValue) ? firebase.firestore.FieldValue.serverTimestamp() : new Date().toISOString(),
+        createdAt: new Date().toISOString(),
         createdAtLocal: new Date().toISOString()
       };
 
-      // 1. Save to localStorage orders list for instant admin access
+      // 1. Post to Server Backend (Backend persists to Firebase in the background)
+      try {
+        fetch('/api/order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderPayload)
+        }).catch(() => {});
+      } catch (e) {}
+
+      // 2. Save to local storage for instant tracking
       try {
         const storedOrders = JSON.parse(localStorage.getItem('kappy_cafe_orders') || '[]');
         storedOrders.unshift(orderPayload);
         localStorage.setItem('kappy_cafe_orders', JSON.stringify(storedOrders));
-      } catch (e) {}
-
-      // 2. Save directly to Cloud Firestore orders collection
-      if (customerFirebaseDb) {
-        try {
-          customerFirebaseDb.collection('orders').doc(newOrderId).set(orderPayload).catch(err => {
-            console.warn('Firestore order save error:', err);
-          });
-        } catch (e) {}
-      }
-
-      // Optional async server validation
-      try {
-        fetch('/api/validate-order', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: orderItemsList })
-        }).catch(() => {});
       } catch (e) {}
 
       // Open WhatsApp to +91 97816 25429
@@ -2157,6 +2144,25 @@
     // ADMIN SETTINGS & MANAGEMENT SYSTEM (PIN: 0005)
     // ==========================================
     const ADMIN_PIN = "0005";
+
+    // SECRET MANAGER GESTURE: Tap Logo 5 times to unlock Admin Portal
+    let logoTapCount = 0;
+    let lastLogoTapTime = 0;
+
+    function handleLogoTaps() {
+      const now = Date.now();
+      if (now - lastLogoTapTime < 800) {
+        logoTapCount++;
+      } else {
+        logoTapCount = 1;
+      }
+      lastLogoTapTime = now;
+
+      if (logoTapCount >= 5) {
+        logoTapCount = 0;
+        openPinModal();
+      }
+    }
 
     function openPinModal() {
       const modal = document.getElementById('pinModal');
@@ -3417,66 +3423,10 @@
       return success;
     }
 
-    // ==========================================
-    // LIVE CLOUD FIRESTORE CUSTOMER SYNC
-    // ==========================================
-    let customerFirebaseDb = null;
-
-    function initCustomerFirebase() {
-      const cfgJson = localStorage.getItem('kappy_cafe_firebase_config');
-      if (!cfgJson) return;
-
-      try {
-        const config = JSON.parse(cfgJson);
-        if (!config || !config.projectId) return;
-
-        if (typeof firebase !== 'undefined' && firebase.initializeApp) {
-          if (!firebase.apps.length) {
-            firebase.initializeApp(config);
-          }
-          customerFirebaseDb = firebase.firestore();
-
-          // 1. Live Firestore Menu Items listener (Instant menu & price updates)
-          customerFirebaseDb.collection('menu_items').onSnapshot(snap => {
-            if (snap.empty) return;
-            const cloudMenu = {};
-            snap.forEach(doc => {
-              const item = doc.data();
-              const cat = item.category || 'other';
-              if (!cloudMenu[cat]) cloudMenu[cat] = [];
-              cloudMenu[cat].push({ ...item, id: doc.id });
-            });
-
-            if (Object.keys(cloudMenu).length > 0) {
-              cloudMenu._categories = MENU_DATA._categories || DEFAULT_CATEGORIES;
-              cloudMenu._addons = DEFAULT_ADDONS;
-              MENU_DATA = cloudMenu;
-              localStorage.setItem('kappy_cafe_menu_data', JSON.stringify(MENU_DATA));
-              renderPhoneMenus();
-            }
-          }, err => console.warn('Customer Firestore menu sync notice:', err));
-
-          // 2. Live Restaurant Settings listener
-          customerFirebaseDb.collection('settings').doc('restaurant_settings').onSnapshot(doc => {
-            if (doc.exists) {
-              const s = doc.data();
-              if (s.deliveryFee !== undefined) deliveryFeeAmount = Number(s.deliveryFee);
-              if (s.takeawayFee !== undefined) takeawayFeeAmount = Number(s.takeawayFee);
-              if (s.whatsappNumber) KAPPY_WHATSAPP_NUMBER = s.whatsappNumber;
-              updateCartUI();
-            }
-          }, () => {});
-        }
-      } catch (e) {
-        console.warn('Customer Firebase init warning:', e);
-      }
-    }
-
     // Initialize Menu & Features on DOM load
     window.addEventListener('DOMContentLoaded', () => {
       initLocalMenuData();
       renderPhoneMenus();
-      initCustomerFirebase();
       fetchLatestCloudMenu();
       initRealtimeSync();
 

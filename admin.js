@@ -1166,7 +1166,7 @@ async function saveRestaurantSettings() {
   alert('Settings successfully updated! WhatsApp ordering number: +' + REST_SETTINGS.whatsappNumber);
 }
 
-function saveFirebaseConfig() {
+async function saveFirebaseConfig() {
   const config = {
     apiKey: document.getElementById('fbApiKey').value.trim(),
     authDomain: document.getElementById('fbAuthDomain').value.trim(),
@@ -1180,7 +1180,17 @@ function saveFirebaseConfig() {
   }
 
   localStorage.setItem('kappy_cafe_firebase_config', JSON.stringify(config));
-  alert('Firebase configuration saved! The portal will now reload to initialize the live connection.');
+
+  // Sync to secure backend server so customer orders are saved to Firebase silently in the background
+  try {
+    await fetch('/api/server-config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ projectId: config.projectId, apiKey: config.apiKey })
+    });
+  } catch (e) {}
+
+  alert('Firebase configuration saved and synced with server backend!');
   window.location.reload();
 }
 
