@@ -41,6 +41,10 @@
     }
   </style>
   
+  <!-- Firebase v10 Compat SDK for Live Firestore Menu & Orders -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script id="tailwind-config">
     tailwind.config = {
@@ -48,17 +52,17 @@
       theme: {
         extend: {
           colors: {
-            "surface-lowest": "#0c0a09",
-            "surface-low": "#161311",
-            "surface-card": "#1f1b19",
-            "surface-high": "#2b2623",
-            "surface-highest": "#38322e",
-            "background": "#14110f",
-            "on-surface": "#f5f1eb",
-            "on-muted": "#9e9690",
-            "brand-gold": "#f0be71",
-            "brand-gold-light": "#ffdeae",
-            "brand-amber": "#ff7a29",
+            "surface-lowest": "#0a0908",
+            "surface-low": "#14110e",
+            "surface-card": "#1c1815",
+            "surface-high": "#27221e",
+            "surface-highest": "#38312b",
+            "background": "#0f0d0b",
+            "on-surface": "#faf6f0",
+            "on-muted": "#a89f95",
+            "brand-gold": "#f5be64",
+            "brand-gold-light": "#fedda8",
+            "brand-amber": "#ff8a3d",
             "veg-green": "#22c55e"
           },
           fontFamily: {
@@ -217,6 +221,11 @@
       <span class="text-[10px] text-on-muted">&copy; 2026 Kappy Cafe. Good Food &bull; Good Vibes &bull; Always.</span>
     </footer>
 
+    <!-- FLOATING WHATSAPP BUTTON (+91 97816 25429) -->
+    <a href="https://wa.me/919781625429?text=Hello%20Kappy%20Cafe!%20I%20would%20like%20to%20inquire%20about%20ordering." target="_blank" rel="noopener noreferrer" class="fixed bottom-20 right-4 z-30 w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-2xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 ring-2 ring-emerald-400/40" title="Chat on WhatsApp (+91 97816 25429)">
+      <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+
     <!-- STICKY FLOATING APP CART BAR (Appears when items > 0) -->
     <div id="stickyCartBar" class="fixed bottom-0 left-0 right-0 z-40 p-3 pointer-events-none transition-all duration-300 transform translate-y-24 opacity-0">
       <div class="max-w-lg mx-auto pointer-events-auto">
@@ -290,46 +299,77 @@
           </div>
         </div>
 
-        <!-- Location / Customer Details Input -->
-        <div class="mb-3">
-          <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-low border border-surface-high">
-            <span class="material-symbols-outlined text-brand-gold text-[18px]" id="orderTypeIcon">table_restaurant</span>
+        <!-- Customer & Location Inputs -->
+        <div class="mb-2.5 flex flex-col gap-2">
+          <!-- Name and Phone -->
+          <div class="grid grid-cols-2 gap-2">
+            <div class="flex items-center gap-1.5 p-2 rounded-xl bg-surface-low border border-surface-high">
+              <span class="material-symbols-outlined text-brand-gold text-[16px]">person</span>
+              <input 
+                type="text" 
+                id="customerNameInput" 
+                placeholder="Your Name *" 
+                class="w-full bg-transparent text-xs text-on-surface placeholder:text-on-muted focus:outline-none"
+              >
+            </div>
+            <div class="flex items-center gap-1.5 p-2 rounded-xl bg-surface-low border border-surface-high">
+              <span class="material-symbols-outlined text-brand-gold text-[16px]">call</span>
+              <input 
+                type="tel" 
+                id="customerPhoneInput" 
+                placeholder="Phone No. *" 
+                class="w-full bg-transparent text-xs text-on-surface placeholder:text-on-muted focus:outline-none"
+              >
+            </div>
+          </div>
+
+          <!-- Dynamic Address / Table -->
+          <div class="flex items-center gap-2 p-2 rounded-xl bg-surface-low border border-surface-high">
+            <span class="material-symbols-outlined text-brand-gold text-[16px]" id="orderTypeIcon">table_restaurant</span>
             <input 
               type="text" 
-              id="tableInput" 
+              id="customerAddressInput" 
               placeholder="Table Number (e.g. Table 4 / Counter)" 
               class="w-full bg-transparent text-xs text-on-surface placeholder:text-on-muted focus:outline-none"
             >
           </div>
-          <div id="deliveryChargeNotice" class="hidden text-[11px] text-amber-400 font-semibold flex items-center gap-1 mt-1.5 px-1 animate-in fade-in duration-200">
-            <span class="material-symbols-outlined text-[14px]">local_shipping</span>
-            <span>Delivery charges are applicable as per location.</span>
+
+          <!-- Special Instructions -->
+          <div class="flex items-center gap-2 p-2 rounded-xl bg-surface-low border border-surface-high">
+            <span class="material-symbols-outlined text-brand-gold text-[16px]">notes</span>
+            <input 
+              type="text" 
+              id="customerNotesInput" 
+              placeholder="Special Instructions (e.g. Extra spicy, no onion)" 
+              class="w-full bg-transparent text-xs text-on-surface placeholder:text-on-muted focus:outline-none"
+            >
           </div>
         </div>
 
         <!-- Scrollable Order Item List -->
-        <div class="flex flex-col gap-2 overflow-y-auto max-h-[38vh] pr-1 py-1" id="modalCartList"></div>
+        <div class="flex flex-col gap-2 overflow-y-auto max-h-[32vh] pr-1 py-1" id="modalCartList"></div>
 
-        <!-- Billing Summary (Clean - NO GST) -->
+        <!-- Billing Summary With Takeaway & Delivery in Breakdown -->
         <div class="border-t border-surface-high pt-2.5 mt-2 flex flex-col gap-1 text-xs">
           <div class="flex justify-between text-on-muted">
             <span>Item Subtotal</span>
             <span class="text-on-surface font-semibold" id="modalSubtotal">₹0.00</span>
           </div>
+          <div class="flex justify-between text-on-muted" id="modalDeliveryRow">
+            <span id="modalFeeLabel">Delivery / Packaging</span>
+            <span class="text-on-surface font-semibold" id="modalFeeAmount">₹0.00</span>
+          </div>
           <div class="flex justify-between text-sm font-bold text-brand-gold pt-1.5 border-t border-surface-high/60">
-            <div class="flex flex-col">
-              <span>Total Payable</span>
-              <span id="deliverySummaryNotice" class="hidden text-[10px] text-amber-400 font-normal">+ Delivery charges applicable</span>
-            </div>
+            <span>Total Payable</span>
             <span id="modalGrandTotal">₹0.00</span>
           </div>
         </div>
 
-        <!-- Action Button (Direct WhatsApp only - Kitchen Bell Removed) -->
+        <!-- Action Button (Direct WhatsApp only) -->
         <div class="mt-3 pt-1">
           <button onclick="sendOrderWhatsApp()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-emerald-900/30 flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
             <span class="material-symbols-outlined text-[18px]">send</span>
-            Send Order via WhatsApp (+91 97816 25429)
+            Place Order via WhatsApp (+91 97816 25429)
           </button>
         </div>
 
@@ -487,6 +527,10 @@
           <button onclick="verifyAdminPin()" class="w-full py-2.5 bg-brand-gold hover:bg-brand-gold-light text-surface-lowest font-bold text-xs uppercase tracking-wider rounded-xl shadow-md active:scale-95 transition-all">
             Unlock Admin Portal
           </button>
+          <a href="./admin.html" class="w-full py-2 text-center text-brand-gold hover:underline text-xs font-semibold flex items-center justify-center gap-1">
+            <span>Open Admin Portal</span>
+            <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+          </a>
           <button onclick="closePinModal()" class="w-full py-2 rounded-xl bg-surface-high text-on-muted hover:text-on-surface text-xs font-semibold">
             Cancel
           </button>
@@ -820,16 +864,8 @@
       { id: "momo", name: "Momo", emoji: "🥟" }
     ];
 
-    // DEFAULT ADD-ONS SYSTEM CONFIGURATION
+    // DEFAULT ADD-ONS SYSTEM CONFIGURATION (Cheese Slice Completely Removed)
     const DEFAULT_ADDONS = [
-      {
-        id: "extra_cheese_slice",
-        name: "Extra Cheese Slice",
-        price: 20,
-        appliesTo: "all_food",
-        maxQty: 3,
-        enabled: true
-      },
       {
         id: "extra_cheese_reg",
         name: "Extra Pizza Cheese (Regular)",
@@ -945,6 +981,8 @@
       if (!Array.isArray(MENU_DATA._addons) || MENU_DATA._addons.length === 0) {
         MENU_DATA._addons = JSON.parse(JSON.stringify(DEFAULT_ADDONS));
       }
+      // Strictly purge any legacy Cheese Slice references
+      MENU_DATA._addons = (MENU_DATA._addons || []).filter(a => a.id !== 'extra_cheese_slice' && !a.name.toLowerCase().includes('cheese slice'));
     }
 
     function getCategoriesList() {
@@ -1071,31 +1109,13 @@
     }
 
     function getApplicableAddonsForItem(category, item) {
-      const addons = getAddonsList().filter(a => a.enabled !== false);
-      const isFood = isFoodCategory(category);
-      const isBurger = category === 'burger' || (item && item.name && item.name.toLowerCase().includes('burger'));
+      const addons = getAddonsList().filter(a => a.enabled !== false && a.id !== 'extra_cheese_slice');
       const isPizza = category === 'pizza' || (item && item.name && item.name.toLowerCase().includes('pizza'));
-      const isMarine = category === 'marine' || (item && item.name && item.name.toLowerCase().includes('marine'));
 
       return addons.filter(addon => {
         const applies = addon.appliesTo;
-        if (applies === 'all_food') {
-          // Extra Cheese Slice: available for all food items across menu; pizzas use dedicated pizza cheese
-          if (isPizza) return false;
-          // If this is marine and a specific marine cheese add-on exists, don't duplicate cheese
-          if (isMarine && addons.some(a => a.appliesTo === 'marine' && a.id !== addon.id && a.name.toLowerCase().includes('cheese'))) {
-            return false;
-          }
-          return isFood;
-        }
-        if (applies === 'burger') {
-          return isBurger;
-        }
         if (applies === 'pizza') {
           return isPizza;
-        }
-        if (applies === 'marine') {
-          return isMarine;
         }
         return applies === category;
       });
@@ -1790,8 +1810,33 @@
       });
 
       list.innerHTML = html;
-      document.getElementById('modalSubtotal').textContent = `₹${grandTotal.toFixed(2)}`;
-      document.getElementById('modalGrandTotal').textContent = `₹${grandTotal.toFixed(2)}`;
+
+      const subtotal = grandTotal;
+      let deliveryFee = 0;
+      let feeLabel = 'Dine-In (No Extra Charge)';
+
+      if (currentOrderType === 'delivery') {
+        deliveryFee = deliveryFeeAmount;
+        feeLabel = 'Home Delivery';
+      } else if (currentOrderType === 'takeaway') {
+        deliveryFee = takeawayFeeAmount;
+        feeLabel = 'Takeaway Packaging';
+      }
+
+      const totalPayable = subtotal + deliveryFee;
+
+      const subtotalEl = document.getElementById('modalSubtotal');
+      const feeLabelEl = document.getElementById('modalFeeLabel');
+      const feeAmountEl = document.getElementById('modalFeeAmount');
+      const grandTotalEl = document.getElementById('modalGrandTotal');
+
+      if (subtotalEl) subtotalEl.textContent = `₹${subtotal.toFixed(2)}`;
+      if (feeLabelEl) feeLabelEl.textContent = feeLabel;
+      if (feeAmountEl) feeAmountEl.textContent = deliveryFee > 0 ? `+₹${deliveryFee.toFixed(2)}` : '₹0.00 (Free)';
+      if (grandTotalEl) grandTotalEl.textContent = `₹${totalPayable.toFixed(2)}`;
+
+      const stickyTotal = document.getElementById('stickyTotal');
+      if (stickyTotal) stickyTotal.textContent = `₹${totalPayable.toFixed(2)}`;
 
       // Out of Stock warning & checkout button state
       const checkoutBtn = document.querySelector('#cartModal button[onclick="sendOrderWhatsApp()"]');
@@ -1803,7 +1848,7 @@
         } else {
           checkoutBtn.disabled = false;
           checkoutBtn.className = 'w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-emerald-900/30 flex items-center justify-center gap-2 active:scale-[0.98] transition-all';
-          checkoutBtn.innerHTML = `<span class="material-symbols-outlined text-[18px]">send</span> Send Order via WhatsApp (+91 98553 81984)`;
+          checkoutBtn.innerHTML = `<span class="material-symbols-outlined text-[18px]">send</span> Place Order via WhatsApp (+91 97816 25429)`;
         }
       }
     }
@@ -1884,8 +1929,11 @@
       }, 1200);
     }
 
-    // ORDER TYPE (DINE-IN VS DELIVERY VS TAKEAWAY)
+    // ORDER TYPE & BILLING CONFIGURATION
     let currentOrderType = 'dine_in';
+    let deliveryFeeAmount = 30;
+    let takeawayFeeAmount = 10;
+    let KAPPY_WHATSAPP_NUMBER = "919781625429";
 
     function setOrderType(type) {
       currentOrderType = type;
@@ -1893,7 +1941,7 @@
       const btnDelivery = document.getElementById('btnOrderTypeDelivery');
       const btnTake = document.getElementById('btnOrderTypeTakeaway');
       const icon = document.getElementById('orderTypeIcon');
-      const input = document.getElementById('tableInput');
+      const input = document.getElementById('customerAddressInput');
 
       const activeClass = 'py-2 px-1.5 rounded-xl text-[11px] font-bold flex items-center justify-center gap-1 transition-all bg-brand-gold text-surface-lowest shadow-sm';
       const inactiveClass = 'py-2 px-1.5 rounded-xl text-[11px] font-bold flex items-center justify-center gap-1 transition-all text-on-muted hover:text-on-surface';
@@ -1907,20 +1955,13 @@
         if (input) input.placeholder = 'Table Number (e.g. Table 4 / Counter)';
       } else if (type === 'delivery') {
         if (icon) icon.textContent = 'home_pin';
-        if (input) input.placeholder = 'Delivery Address & Phone (House/Colony)';
+        if (input) input.placeholder = 'Complete Delivery Address (House/Colony/Area) *';
       } else {
         if (icon) icon.textContent = 'takeout_dining';
-        if (input) input.placeholder = 'Customer Name / Contact (Parcel Pickup)';
+        if (input) input.placeholder = 'Pickup Note / Expected Time (e.g. In 15 mins)';
       }
 
-      const delNotice = document.getElementById('deliveryChargeNotice');
-      const delSummaryNotice = document.getElementById('deliverySummaryNotice');
-      if (delNotice) {
-        delNotice.classList.toggle('hidden', type !== 'delivery');
-      }
-      if (delSummaryNotice) {
-        delSummaryNotice.classList.toggle('hidden', type !== 'delivery');
-      }
+      updateCartUI();
     }
 
     function clearCustomerCart() {
@@ -1934,7 +1975,7 @@
       }
     }
 
-    // WHATSAPP ORDER (CLEAN FORMAT, ACCURATE ADD-ON SNAPSHOTS)
+    // WHATSAPP ORDER (EXACT TEMPLATE & FIRESTORE INTEGRATION)
     async function sendOrderWhatsApp() {
       const keys = Object.keys(cart);
       if (keys.length === 0) {
@@ -1953,74 +1994,139 @@
         }
       }
 
-      const detail = document.getElementById('tableInput')?.value.trim() || '';
+      const name = document.getElementById('customerNameInput')?.value.trim();
+      const phone = document.getElementById('customerPhoneInput')?.value.trim();
+      const address = document.getElementById('customerAddressInput')?.value.trim();
+      const instructions = document.getElementById('customerNotesInput')?.value.trim() || 'None';
 
-      let message = `*KAPPY CAFE - NEW ORDER*\n\n`;
-      if (currentOrderType === 'dine_in') {
-        message += `🍽️ *ORDER TYPE:* Dine-In\n`;
-        message += `📍 *TABLE/LOCATION:* ${detail || 'Table / Dine-In'}\n\n`;
-      } else if (currentOrderType === 'delivery') {
-        message += `🛵 *ORDER TYPE:* Home Delivery\n`;
-        message += `📍 *DELIVERY ADDRESS:* ${detail || 'Delivery (Address on call)'}\n`;
-        message += `🛵 *DELIVERY CHARGES:* Delivery charges are applicable as per distance\n\n`;
-      } else {
-        message += `🛍️ *ORDER TYPE:* Takeaway / Parcel\n`;
-        message += `👤 *CUSTOMER/NOTE:* ${detail || 'Walk-in Takeaway'}\n\n`;
+      if (!name) {
+        alert('Please enter your Name before placing the order.');
+        document.getElementById('customerNameInput')?.focus();
+        return;
+      }
+      if (!phone) {
+        alert('Please enter your Phone Number.');
+        document.getElementById('customerPhoneInput')?.focus();
+        return;
+      }
+      if (currentOrderType === 'delivery' && !address) {
+        alert('Please enter your Delivery Address (House / Colony / Area).');
+        document.getElementById('customerAddressInput')?.focus();
+        return;
       }
 
-      message += `*ORDER ITEMS:*\n`;
+      const orderTypeStr = currentOrderType === 'delivery' ? 'Delivery' : (currentOrderType === 'takeaway' ? 'Pickup' : 'Dine-In');
+      const addressStr = address || (currentOrderType === 'dine_in' ? 'Dine-In (Table / Counter)' : 'Self Pickup');
 
-      let grandTotal = 0;
-      keys.forEach((lineId, idx) => {
+      let subtotal = 0;
+      const orderItemsList = [];
+
+      keys.forEach((lineId) => {
         const item = cart[lineId];
         const lineTotal = item.unitPrice * item.qty;
-        grandTotal += lineTotal;
+        subtotal += lineTotal;
+        orderItemsList.push({
+          name: item.dishName,
+          category: item.category,
+          variant: item.variantLabel || '',
+          qty: item.qty,
+          price: item.unitPrice,
+          total: lineTotal,
+          addons: item.addons || []
+        });
+      });
 
+      let deliveryFee = 0;
+      if (currentOrderType === 'delivery') deliveryFee = deliveryFeeAmount;
+      else if (currentOrderType === 'takeaway') deliveryFee = takeawayFeeAmount;
+      const finalTotal = subtotal + deliveryFee;
+
+      // WhatsApp Message formatted strictly according to template:
+      let message = `Hello! I would like to place an order.\n\n`;
+      message += `Customer Details:\n`;
+      message += `Name: ${name}\n`;
+      message += `Phone: ${phone}\n`;
+      message += `Order Type: ${orderTypeStr}\n`;
+      message += `Address: ${addressStr}\n\n`;
+
+      message += `Order Details:\n`;
+      keys.forEach((lineId, idx) => {
+        const item = cart[lineId];
         const variantPart = item.variantLabel ? ` (${item.variantLabel})` : '';
-        message += `${idx + 1}. *${item.dishName}${variantPart}* x ${item.qty} = ₹${lineTotal.toFixed(2)}\n`;
+        const lineTotal = item.unitPrice * item.qty;
+        message += `${idx + 1}. ${item.dishName}${variantPart} × ${item.qty} = ₹${lineTotal.toFixed(2)}\n`;
 
         if (item.addons && item.addons.length > 0) {
           item.addons.forEach(a => {
-            message += `   • + ${a.name} ${a.qty > 1 ? `(x${a.qty})` : ''} = ₹${(a.price * a.qty).toFixed(2)}\n`;
+            message += `   • + ${a.name} × ${a.qty} = ₹${(a.price * a.qty).toFixed(2)}\n`;
           });
         }
       });
 
-      message += `\n💰 *TOTAL PAYABLE:* ₹${grandTotal.toFixed(2)}`;
-      if (currentOrderType === 'delivery') {
-        message += `\n🛵 *(Delivery charges are applicable)*`;
+      message += `\nSubtotal: ₹${subtotal.toFixed(2)}\n`;
+      message += `Delivery: ₹${deliveryFee.toFixed(2)}\n`;
+      message += `Total: ₹${finalTotal.toFixed(2)}\n\n`;
+      message += `Special Instructions: ${instructions}\n\n`;
+      message += `Please confirm my order. Thank you!`;
+
+      // Save Order Payload to Firebase Cloud Firestore and LocalStorage
+      const newOrderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+      const orderPayload = {
+        id: newOrderId,
+        orderId: newOrderId,
+        customerName: name,
+        customerPhone: phone,
+        orderType: orderTypeStr.toLowerCase(),
+        address: addressStr,
+        items: orderItemsList,
+        subtotal: subtotal,
+        deliveryCharge: deliveryFee,
+        totalAmount: finalTotal,
+        specialInstructions: instructions,
+        status: 'New',
+        createdAt: (typeof firebase !== 'undefined' && firebase.firestore && firebase.firestore.FieldValue) ? firebase.firestore.FieldValue.serverTimestamp() : new Date().toISOString(),
+        createdAtLocal: new Date().toISOString()
+      };
+
+      // 1. Save to localStorage orders list for instant admin access
+      try {
+        const storedOrders = JSON.parse(localStorage.getItem('kappy_cafe_orders') || '[]');
+        storedOrders.unshift(orderPayload);
+        localStorage.setItem('kappy_cafe_orders', JSON.stringify(storedOrders));
+      } catch (e) {}
+
+      // 2. Save directly to Cloud Firestore orders collection
+      if (customerFirebaseDb) {
+        try {
+          customerFirebaseDb.collection('orders').doc(newOrderId).set(orderPayload).catch(err => {
+            console.warn('Firestore order save error:', err);
+          });
+        } catch (e) {}
       }
 
       // Optional async server validation
       try {
-        const orderPayload = {
-          items: keys.map(k => {
-            const c = cart[k];
-            return {
-              category: c.category,
-              name: c.dishName,
-              variantLabel: c.variantLabel,
-              qty: c.qty,
-              addons: c.addons || []
-            };
-          })
-        };
         fetch('/api/validate-order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(orderPayload)
+          body: JSON.stringify({ items: orderItemsList })
         }).catch(() => {});
       } catch (e) {}
 
-      const url = `https://wa.me/919781625429?text=${encodeURIComponent(message)}`;
+      // Open WhatsApp to +91 97816 25429
+      const targetPhone = KAPPY_WHATSAPP_NUMBER || '919781625429';
+      const url = `https://wa.me/${targetPhone}?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
 
-      // RESET THE CART AND RESTORE ALL "ADD TO CART" BUTTONS
+      // Clear the cart
       for (const k in cart) {
         delete cart[k];
       }
-      const tableInput = document.getElementById('tableInput');
-      if (tableInput) tableInput.value = '';
+      const addressInput = document.getElementById('customerAddressInput');
+      if (addressInput) addressInput.value = '';
+      const notesInput = document.getElementById('customerNotesInput');
+      if (notesInput) notesInput.value = '';
+
       setOrderType('dine_in');
       updateCartUI();
       renderPhoneMenus();
@@ -2071,7 +2177,9 @@
       const error = document.getElementById('pinErrorMsg');
       if (input.value.trim() === ADMIN_PIN) {
         closePinModal();
-        openAdminPortal();
+        sessionStorage.setItem('kappy_admin_authenticated', 'true');
+        sessionStorage.setItem('kappy_admin_email', 'Manager (PIN Verified)');
+        window.location.href = './admin.html';
       } else {
         error.classList.remove('hidden');
         input.value = '';
@@ -3309,10 +3417,66 @@
       return success;
     }
 
+    // ==========================================
+    // LIVE CLOUD FIRESTORE CUSTOMER SYNC
+    // ==========================================
+    let customerFirebaseDb = null;
+
+    function initCustomerFirebase() {
+      const cfgJson = localStorage.getItem('kappy_cafe_firebase_config');
+      if (!cfgJson) return;
+
+      try {
+        const config = JSON.parse(cfgJson);
+        if (!config || !config.projectId) return;
+
+        if (typeof firebase !== 'undefined' && firebase.initializeApp) {
+          if (!firebase.apps.length) {
+            firebase.initializeApp(config);
+          }
+          customerFirebaseDb = firebase.firestore();
+
+          // 1. Live Firestore Menu Items listener (Instant menu & price updates)
+          customerFirebaseDb.collection('menu_items').onSnapshot(snap => {
+            if (snap.empty) return;
+            const cloudMenu = {};
+            snap.forEach(doc => {
+              const item = doc.data();
+              const cat = item.category || 'other';
+              if (!cloudMenu[cat]) cloudMenu[cat] = [];
+              cloudMenu[cat].push({ ...item, id: doc.id });
+            });
+
+            if (Object.keys(cloudMenu).length > 0) {
+              cloudMenu._categories = MENU_DATA._categories || DEFAULT_CATEGORIES;
+              cloudMenu._addons = DEFAULT_ADDONS;
+              MENU_DATA = cloudMenu;
+              localStorage.setItem('kappy_cafe_menu_data', JSON.stringify(MENU_DATA));
+              renderPhoneMenus();
+            }
+          }, err => console.warn('Customer Firestore menu sync notice:', err));
+
+          // 2. Live Restaurant Settings listener
+          customerFirebaseDb.collection('settings').doc('restaurant_settings').onSnapshot(doc => {
+            if (doc.exists) {
+              const s = doc.data();
+              if (s.deliveryFee !== undefined) deliveryFeeAmount = Number(s.deliveryFee);
+              if (s.takeawayFee !== undefined) takeawayFeeAmount = Number(s.takeawayFee);
+              if (s.whatsappNumber) KAPPY_WHATSAPP_NUMBER = s.whatsappNumber;
+              updateCartUI();
+            }
+          }, () => {});
+        }
+      } catch (e) {
+        console.warn('Customer Firebase init warning:', e);
+      }
+    }
+
     // Initialize Menu & Features on DOM load
     window.addEventListener('DOMContentLoaded', () => {
       initLocalMenuData();
       renderPhoneMenus();
+      initCustomerFirebase();
       fetchLatestCloudMenu();
       initRealtimeSync();
 

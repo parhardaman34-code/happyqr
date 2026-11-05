@@ -1,31 +1,21 @@
 {
   "_categories": [
-    { "id": "pizza", "name": "Pizza", "emoji": "🍕" },
-    { "id": "burgers", "name": "Burgers", "emoji": "🍔" },
-    { "id": "pasta", "name": "Pasta", "emoji": "🍝" },
-    { "id": "sandwiches", "name": "Sandwiches", "emoji": "🥪" },
-    { "id": "garlic_bread", "name": "Garlic Bread", "emoji": "🥖" },
-    { "id": "mojito", "name": "Mojito", "emoji": "🍹" },
-    { "id": "fries", "name": "Fries", "emoji": "🍟" },
-    { "id": "maggi", "name": "Maggi", "emoji": "🍜" },
-    { "id": "shakes", "name": "Shakes", "emoji": "🥤" },
-    { "id": "wraps", "name": "Wraps", "emoji": "🌯" },
-    { "id": "momo", "name": "Momo", "emoji": "🥟" }
+    { "id": "pizza", "name": "Pizza", "emoji": "🍕", "description": "Handcrafted artisanal crusts with rich herb sauce and melted cheese" },
+    { "id": "burgers", "name": "Burgers", "emoji": "🍔", "description": "Toasted sesame buns with crispy seasoned patties and house sauces" },
+    { "id": "pasta", "name": "Pasta", "emoji": "🍝", "description": "Al dente penne simmered in signature freshly prepared sauces" },
+    { "id": "sandwiches", "name": "Sandwiches", "emoji": "🥪", "description": "Grilled whole-wheat bread loaded with fresh veggies & spiced fillings" },
+    { "id": "garlic_bread", "name": "Garlic Bread", "emoji": "🥖", "description": "Warm buttery baguettes infused with roasted garlic & herbs" },
+    { "id": "mojito", "name": "Mojito", "emoji": "🍹", "description": "Chilled sparkling coolers muddled with mint, citrus & crushed ice" },
+    { "id": "fries", "name": "Fries", "emoji": "🍟", "description": "Crispy golden cut potatoes tossed in artisanal spice blends" },
+    { "id": "maggi", "name": "Maggi", "emoji": "🍜", "description": "Steaming hot comfort noodles with aromatic spices & fresh vegetables" },
+    { "id": "shakes", "name": "Shakes", "emoji": "🥤", "description": "Thick creamy shakes blended with rich dairy and gourmet toppings" },
+    { "id": "wraps", "name": "Wraps", "emoji": "🌯", "description": "Soft toasted tortillas rolled with marinated fillings and tangy drizzles" },
+    { "id": "momo", "name": "Momo", "emoji": "🥟", "description": "Steamed & fried street delicacies paired with fiery garlic chili dip" }
   ],
   "_addons": [
     {
-      "id": "extra_cheese_slice",
-      "name": "Extra Cheese Slice",
-      "price": 20,
-      "maxQty": 3,
-      "appliesTo": "all_food",
-      "targetCategory": "",
-      "excludeCategories": ["shakes", "mojito", "pizza"],
-      "enabled": true
-    },
-    {
       "id": "extra_cheese_reg",
-      "name": "Extra Cheese (Regular)",
+      "name": "Extra Pizza Cheese (Regular)",
       "price": 30,
       "maxQty": 1,
       "appliesTo": "category",
@@ -35,7 +25,7 @@
     },
     {
       "id": "extra_cheese_large",
-      "name": "Extra Cheese (Double / Large)",
+      "name": "Extra Pizza Cheese (Double / Large)",
       "price": 50,
       "maxQty": 1,
       "appliesTo": "category",
@@ -45,73 +35,73 @@
     }
   ],
   "pizza": [
-    { "name": "Margherita Pizza", "variants": [{ "label": "S", "price": 80 }, { "label": "M", "price": 140 }, { "label": "L", "price": 240 }] },
-    { "name": "Sweet Corn Pizza", "variants": [{ "label": "S", "price": 90 }, { "label": "M", "price": 150 }, { "label": "L", "price": 250 }] },
-    { "name": "Paneer Delight Pizza", "variants": [{ "label": "S", "price": 150 }, { "label": "M", "price": 240 }, { "label": "L", "price": 330 }] },
-    { "name": "Mushroom Tikka Pizza", "variants": [{ "label": "S", "price": 140 }, { "label": "M", "price": 260 }, { "label": "L", "price": 340 }] },
-    { "name": "Tandoori Paneer Pizza", "variants": [{ "label": "S", "price": 130 }, { "label": "M", "price": 270 }, { "label": "L", "price": 360 }] },
-    { "name": "Veggie Crunch Pizza", "variants": [{ "label": "S", "price": 150 }, { "label": "M", "price": 260 }, { "label": "L", "price": 350 }] },
-    { "name": "Onion Pizza", "variants": [{ "label": "S", "price": 90 }, { "label": "M", "price": 150 }, { "label": "L", "price": 230 }] },
-    { "name": "Kappy Special Pizza", "variants": [{ "label": "S", "price": 160 }, { "label": "M", "price": 280 }, { "label": "L", "price": 390 }] }
+    { "name": "Margherita Pizza", "description": "Classic Italian stone-baked crust with vibrant marinara, mozzarella & fresh basil notes.", "variants": [{ "label": "S", "price": 80 }, { "label": "M", "price": 140 }, { "label": "L", "price": 240 }] },
+    { "name": "Sweet Corn Pizza", "description": "Juicy golden sweet corn kernels over molten mozzarella cheese and spiced tomato sauce.", "variants": [{ "label": "S", "price": 90 }, { "label": "M", "price": 150 }, { "label": "L", "price": 250 }] },
+    { "name": "Paneer Delight Pizza", "description": "Succulent cubes of cottage cheese, crunchy capsicum and onions with gourmet herb seasoning.", "variants": [{ "label": "S", "price": 150 }, { "label": "M", "price": 240 }, { "label": "L", "price": 330 }] },
+    { "name": "Mushroom Tikka Pizza", "description": "Tandoori marinated roasted button mushrooms, caramelized onions and melted mozzarella.", "variants": [{ "label": "S", "price": 140 }, { "label": "M", "price": 260 }, { "label": "L", "price": 340 }] },
+    { "name": "Tandoori Paneer Pizza", "description": "Smoky char-grilled paneer tikka, red peppers and aromatic live-tandoor spices.", "variants": [{ "label": "S", "price": 130 }, { "label": "M", "price": 270 }, { "label": "L", "price": 360 }] },
+    { "name": "Veggie Crunch Pizza", "description": "A vibrant garden medley of crisp bell peppers, red onions, tomatoes and sweet corn.", "variants": [{ "label": "S", "price": 150 }, { "label": "M", "price": 260 }, { "label": "L", "price": 350 }] },
+    { "name": "Onion Pizza", "description": "Simple yet flavorful crisp thinly sliced red onions with melted cheese and oregano.", "variants": [{ "label": "S", "price": 90 }, { "label": "M", "price": 150 }, { "label": "L", "price": 230 }] },
+    { "name": "Kappy Special Pizza", "description": "Chef's loaded masterpiece with paneer tikka, sweet corn, mushrooms, olives and extra cheese blend.", "variants": [{ "label": "S", "price": 160 }, { "label": "M", "price": 280 }, { "label": "L", "price": 390 }] }
   ],
   "burgers": [
-    { "name": "Crispy Veg Burger", "variants": [{ "label": "Without Cheese", "price": 40 }, { "label": "With Cheese", "price": 50 }] },
-    { "name": "Mushroom Burger", "variants": [{ "label": "Without Cheese", "price": 60 }, { "label": "With Cheese", "price": 70 }] },
-    { "name": "Popular Burger", "variants": [{ "label": "Without Cheese", "price": 60 }, { "label": "With Cheese", "price": 70 }] },
-    { "name": "Paneer Burger", "variants": [{ "label": "Without Cheese", "price": 70 }, { "label": "With Cheese", "price": 80 }] }
+    { "name": "Crispy Veg Burger", "description": "Crispy seasoned vegetable patty, crunchy iceberg lettuce and chef's signature garlic mayo.", "variants": [{ "label": "Without Cheese", "price": 40 }, { "label": "With Cheese", "price": 50 }] },
+    { "name": "Mushroom Burger", "description": "Sauteed wild button mushrooms with creamy herb spread, crisp veggies and golden crust.", "variants": [{ "label": "Without Cheese", "price": 60 }, { "label": "With Cheese", "price": 70 }] },
+    { "name": "Popular Burger", "description": "Double spiced patty stacked with tomato slices, crunchy onion rings and smoky chipotle sauce.", "variants": [{ "label": "Without Cheese", "price": 60 }, { "label": "With Cheese", "price": 70 }] },
+    { "name": "Paneer Burger", "description": "Crisp golden-fried spiced paneer patty glazed in creamy tandoori dressing on soft brioche bun.", "variants": [{ "label": "Without Cheese", "price": 70 }, { "label": "With Cheese", "price": 80 }] }
   ],
   "pasta": [
-    { "name": "Alfredo Sauce Pasta (White)", "price": 140 },
-    { "name": "Marinara Pasta (Red Sauce)", "price": 130 },
-    { "name": "Pasta Lavista (Mix Sauce)", "price": 150 }
+    { "name": "Alfredo Sauce Pasta (White)", "description": "Silky penne pasta tossed in rich butter cream, roasted garlic, parmesan and cracked black pepper.", "price": 140 },
+    { "name": "Marinara Pasta (Red Sauce)", "description": "Authentic crushed plum tomato marinara simmered with Italian herbs, garlic and olive oil.", "price": 130 },
+    { "name": "Pasta Lavista (Mix Sauce)", "description": "The best of both worlds: creamy white and tangy marinara pink sauce infused with vegetables.", "price": 150 }
   ],
   "sandwiches": [
-    { "name": "Veggie Mix Sandwich", "price": 50 },
-    { "name": "Paneer Makhani Sandwich", "price": 70 },
-    { "name": "Mushroom Sandwich", "price": 60 },
-    { "name": "Aloo Patty Sandwich", "price": 50 },
-    { "name": "Kappy Special Sandwich", "price": 70 }
+    { "name": "Veggie Mix Sandwich", "description": "Crisp cucumber, tomato, sweet corn and lettuce tossed in herb mayo on golden toasted bread.", "price": 50 },
+    { "name": "Paneer Makhani Sandwich", "description": "Tender paneer cubes simmered in velvety royal makhani gravy inside crispy grilled bread.", "price": 70 },
+    { "name": "Mushroom Sandwich", "description": "Roasted garlic button mushrooms, caramelized onions and herb spread grilled to perfection.", "price": 60 },
+    { "name": "Aloo Patty Sandwich", "description": "Crisp golden spiced potato patty layered with sweet chutney, mint spread and sliced onions.", "price": 50 },
+    { "name": "Kappy Special Sandwich", "description": "Triple-decker grilled sandwich loaded with paneer tikka, sweet corn, veggies and house special sauce.", "price": 70 }
   ],
   "garlic_bread": [
-    { "name": "Cheese Garlic Bread", "price": 100 },
-    { "name": "Stuffed Garlic Bread", "price": 150 }
+    { "name": "Cheese Garlic Bread", "description": "Toasted artisan bread bathed in garlic herb butter and covered in melted golden mozzarella.", "price": 100 },
+    { "name": "Stuffed Garlic Bread", "description": "Freshly baked folded baguette stuffed with juicy sweet corn, spiced jalapenos and stretchy cheese.", "price": 150 }
   ],
   "mojito": [
-    { "name": "Watermelon Mojito", "price": 80 },
-    { "name": "Virgin Mojito", "price": 80 },
-    { "name": "Fruit Beer", "price": 60 },
-    { "name": "Blue Curacao", "price": 70 },
-    { "name": "Fresh Lime Soda", "price": 50 }
+    { "name": "Watermelon Mojito", "description": "Sweet crushed watermelon muddled with fresh mint sprigs, lime wedges and sparkling soda.", "price": 80 },
+    { "name": "Virgin Mojito", "description": "The timeless classic with zesty Persian lime juice, garden mint, cane sugar and chilled soda.", "price": 80 },
+    { "name": "Fruit Beer", "description": "Refreshing non-alcoholic brewed malt drink with vibrant bubbly fruit essence.", "price": 60 },
+    { "name": "Blue Curacao", "description": "Tropical electric blue citrus cooler with crushed ice and crisp effervescence.", "price": 70 },
+    { "name": "Fresh Lime Soda", "description": "Chilled fizz with freshly hand-squeezed lime (Sweet, Salted, or Mixed).", "price": 50 }
   ],
   "fries": [
-    { "name": "Classic French Fries", "price": 60 },
-    { "name": "Cajun Spice Fries", "price": 50 },
-    { "name": "Peri-Peri Fries", "price": 100 },
-    { "name": "Cheese Fries", "price": 150 }
+    { "name": "Classic French Fries", "description": "Straight-cut golden Idaho potatoes fried to crisp perfection, lightly sprinkled with sea salt.", "price": 60 },
+    { "name": "Cajun Spice Fries", "description": "Crispy golden fries dusted with fiery southern Louisiana cajun seasoning blend.", "price": 50 },
+    { "name": "Peri-Peri Fries", "description": "Tossed in spicy African bird's eye chili powder with a tangy citrus kick.", "price": 100 },
+    { "name": "Cheese Fries", "description": "Hot crunchy fries smothered in velvety warm cheddar cheese sauce and herb flakes.", "price": 150 }
   ],
   "maggi": [
-    { "name": "Simple Maggi", "price": 40 },
-    { "name": "Veg Maggi", "price": 50 },
-    { "name": "Sweet Corn Maggi", "price": 50 },
-    { "name": "Tasty Special Maggi", "price": 60 }
+    { "name": "Simple Maggi", "description": "Classic childhood favorite 2-minute noodles prepared with authentic aromatic tastemaker broth.", "price": 40 },
+    { "name": "Veg Maggi", "description": "Loaded with sauteed onions, crisp capsicum, carrots, green peas and garden spices.", "price": 50 },
+    { "name": "Sweet Corn Maggi", "description": "Juicy sweet corn kernels tossed with butter and aromatic spiced noodles.", "price": 50 },
+    { "name": "Tasty Special Maggi", "description": "Chef's signature spicy recipe with paneer bits, butter, vegetables and extra masala blend.", "price": 60 }
   ],
   "shakes": [
-    { "name": "Chocolate Shake", "price": 60 },
-    { "name": "Cafe Frappe Shake", "price": 60 },
-    { "name": "Strawberry Shake", "price": 70 },
-    { "name": "Butter Scotch Shake", "price": 70 },
-    { "name": "Chocolate Oreo Shake", "price": 90 },
-    { "name": "Kit-Kat Shake", "price": 90 }
+    { "name": "Chocolate Shake", "description": "Rich Belgian chocolate ganache blended with creamy vanilla ice cream and chilled milk.", "price": 60 },
+    { "name": "Cafe Frappe Shake", "description": "Bold roasted espresso beans whipped with sweetened chilled cream and dark cocoa drizzle.", "price": 60 },
+    { "name": "Strawberry Shake", "description": "Sweet sun-ripened strawberry puree churned into a velvety thick pink shake.", "price": 70 },
+    { "name": "Butter Scotch Shake", "description": "Creamy caramel butterscotch ice cream blitzed with crunchy golden praline nuts.", "price": 70 },
+    { "name": "Chocolate Oreo Shake", "description": "Thick milkshake blended with crushed Oreo cookies, chocolate sauce and cookie crumble.", "price": 90 },
+    { "name": "Kit-Kat Shake", "description": "Crispy wafer Kit-Kat bars blended into a decadent rich chocolate shake with wafer bites.", "price": 90 }
   ],
   "wraps": [
-    { "name": "Paneer Tikka Wrap", "price": 90 },
-    { "name": "Veggie Wrap", "price": 70 },
-    { "name": "Mexican Wrap", "price": 100 },
-    { "name": "Cheese Paneer Wrap", "price": 110 },
-    { "name": "Peri Peri Wrap", "price": 100 }
+    { "name": "Paneer Tikka Wrap", "description": "Char-grilled spiced paneer wrapped in toasted tortilla with mint mayo and shredded cabbage.", "price": 90 },
+    { "name": "Veggie Wrap", "description": "Crisp seasonal veggies, corn and crunchy potato bites wrapped with creamy garlic herb dressing.", "price": 70 },
+    { "name": "Mexican Wrap", "description": "Spicy refried corn, beans, bell peppers, salsa and creamy jalapeno sauce wrapped tight.", "price": 100 },
+    { "name": "Cheese Paneer Wrap", "description": "Warm melted cheese rolled with tender spiced paneer cubes, capsicum and creamy sauce.", "price": 110 },
+    { "name": "Peri Peri Wrap", "description": "Fiery peri-peri dusted paneer and crunchy vegetables in a toasted golden wrap.", "price": 100 }
   ],
   "momo": [
-    { "name": "Momos", "price": 120 },
-    { "name": "Spring Rolls", "price": 80 }
+    { "name": "Momos", "description": "Steamed delicate Himalayan dumplings filled with finely chopped cabbage, carrots & herbs (6 pcs).", "price": 120 },
+    { "name": "Spring Rolls", "description": "Golden crisp pastry rolls filled with shredded stir-fried noodles and Asian vegetables (2 rolls).", "price": 80 }
   ]
 }

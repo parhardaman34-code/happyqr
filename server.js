@@ -117,6 +117,8 @@ function handler(req, res) {
   let safePath = decodeURI(urlPath);
   if (safePath === '/' || safePath === '') {
     safePath = '/index.html';
+  } else if (safePath === '/admin' || safePath === '/admin/') {
+    safePath = '/admin.html';
   }
 
   const filePath = path.normalize(path.join(PUBLIC_DIR, safePath));
